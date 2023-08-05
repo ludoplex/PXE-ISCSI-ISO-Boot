@@ -28,7 +28,7 @@ class ipxe (SimpleHTTPRequestHandler):
                 sanboots = []
                 ipaddr = os.getenv("IPADDR",'192.168.1.2')
                 for target in targets:
-                        items.append("item {} {}".format(target,target))
+                        items.append(f"item {target} {target}")
                         sanboots.append(":{}\nset root-path iscsi:{}:::1:example.org:{}\nsanboot --drive 0x80 -k ${{root-path}}".format(target, ipaddr, target))
 
                 BOOTLOADERMSG = BOOTLOADER.safe_substitute(items="\n".join(items),sanboots="\n\n".join(sanboots)).encode()
